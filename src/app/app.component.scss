@@ -1,3 +1,18 @@
+.drop-container {
+  display: flex;
+}
+
+.file-list-container {
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.generate-container {
+  text-align: center;
+  margin: 0 auto;
+}
+
 .container {
   width: 450px;
   height: 200px;
@@ -5,7 +20,6 @@
   text-align: center;
   border: dashed 1px #979797;
   position: relative;
-  margin: 0 auto;
 
   input {
     opacity: 0;
@@ -49,12 +63,15 @@
     border: dashed 1px #979797;
     margin-bottom: 1rem;
 
+    img {
+      width: 45px;
+    }
+
     img.delete {
       margin-left: 0.5rem;
       cursor: pointer;
       align-self: flex-end;
     }
-
 
     display: flex;
     flex-grow: 1;

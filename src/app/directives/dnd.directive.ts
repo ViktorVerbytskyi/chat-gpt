@@ -12,7 +12,7 @@ import {
 })
 export class DndDirective {
   @HostBinding('class.fileover') fileOver!: boolean;
-  @Output() fileDropped = new EventEmitter<any>();
+  @Output() fileDropped: EventEmitter<any> = new EventEmitter<any>();
 
   // Dragover listener
   @HostListener('dragover', ['$event']) onDragOver(evt: Event): void {
@@ -29,12 +29,14 @@ export class DndDirective {
   }
 
   // Drop listener
-  @HostListener('drop', ['$event']) public ondrop(evt: any): void {
+  @HostListener('drop', ['$event']) public onDrop(evt: any): void {
     evt.preventDefault();
     evt.stopPropagation();
     this.fileOver = false;
     let files = evt.dataTransfer.files;
-    if (files.length > 0) {
+    //TODO: need to think about pushing and checking only one file
+    const isPdf = files[0].name.match(/.pdf/);
+    if (files.length > 0 && !!isPdf) {
       this.fileDropped.emit(files);
     }
   }
