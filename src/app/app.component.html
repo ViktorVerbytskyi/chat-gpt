@@ -37,6 +37,7 @@
 <div class="generate-container" *ngIf="files.length === 2">
   <button type="button" class="btn btn-success" (click)="generateRequestToChatGPT()">Generate</button>
   <div>{{ textModel.response }}</div>
+  <button type="button" class="btn btn-success" (click)="saveToPdf()">saveToPdf</button>
 </div>
 
 

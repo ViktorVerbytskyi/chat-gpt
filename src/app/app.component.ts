@@ -1,5 +1,8 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import * as pdfjsLib from 'pdfjs-dist';
+import * as pdfMake from 'pdfmake/build/pdfmake';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
 import { OpenaiService } from "./services/openai.service";
 
@@ -68,6 +71,33 @@ export class AppComponent {
     this.openaiService.generateText(mappedText).then((text: string) => {
       this.textModel.response = text;
     });
+  }
+
+  saveToPdf(): void { // more info you can see here: https://pdfmake.github.io/docs/0.1/
+    const docDefinition = {
+      content: [
+        {
+          layout: 'lightHorizontalLines', // optional
+          table: {
+            headerRows: 1,
+            widths: [ '*', 'auto', 100, '*' ],
+
+            body: [
+              [ 'First', 'Second', 'Third', 'The last one' ],
+              [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' ],
+              [ { text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4' ]
+            ]
+          }
+        }
+      ]
+    };
+
+    //for download
+    // const pdfDocGenerator = pdfMake.createPdf(docDefinition);
+    // pdfDocGenerator.download('document.pdf');
+
+    //for open
+    pdfMake.createPdf(docDefinition).open();
   }
 
   private prepareFilesList(file: any): void {

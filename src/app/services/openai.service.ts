@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Configuration, OpenAIApi } from 'openai';
-import { chatGPTApiKey } from "../../../key";
+
+const chatGPTApiKey: string = '';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,6 @@ export class OpenaiService {
       prompt: prompt,
       max_tokens: 256
     }).then(response => {
-      console.log('response:', response)
       return response.data.choices[0].text || '';
     }).catch(error => 'catch error');
   }
