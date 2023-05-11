@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'interview-set-up',
-    component: InterviewSetUpComponent
+    loadChildren: () => import('./pages/interview-set-up/interview-set-up.module').then(m => m.InterviewSetUpModule)
   },
   {
     path: '**',

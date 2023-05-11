@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Configuration, OpenAIApi } from 'openai';
 
-const chatGPTApiKey: string = '';
+const chatGPTApiKey: string = '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';
 
 @Injectable({
   providedIn: 'root'
