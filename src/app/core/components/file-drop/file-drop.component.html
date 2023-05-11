@@ -1,5 +1,14 @@
-<div class="drop-container" xmlns="http://www.w3.org/1999/html">
-  <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+<div class="container">
+  <div class="row">
+    <div class="col-10 text-end">Interview materials generation</div>
+    <div class="col-2">
+      <button type="button" class="btn btn-outline-success" routerLink="/interview-set-up/edit">Edit Set-up</button>
+    </div>
+  </div>
+</div>
+
+<div class="row" xmlns="http://www.w3.org/1999/html">
+  <div class="col container-dnd" appDnd (fileDropped)="onFileDropped($event)">
     <input type="file" #fileDropRef1 id="fileDropRef1" (change)="fileBrowseHandler($event)" accept=".pdf"/>
     <img src="assets/place_item.svg" alt="">
     <h3>Drag and drop CV file here (*.pdf)</h3>
@@ -7,7 +16,7 @@
     <label for="fileDropRef1">Browse for file</label>
   </div>
 
-  <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+  <div class="col container-dnd" appDnd (fileDropped)="onFileDropped($event)">
     <input type="file" #fileDropRef2 id="fileDropRef2" (change)="fileBrowseHandler($event)" accept=".pdf"/>
     <img src="assets/place_item.svg" alt="">
     <h3>Drag and drop Vacancy file here (*.pdf)</h3>
