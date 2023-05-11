@@ -16,14 +16,13 @@ export class OpenaiService {
     this.openai = new OpenAIApi(this.configuration);
   }
 
-  generateText(prompt: string): Promise<string> {
-    return this.openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: prompt,
-      max_tokens: 256
-    }).then(response => {
-      return response.data.choices[0].text || '';
-    }).catch(error => 'catch error');
+  async  generateText(prompt: string): Promise<string> {
+    const response = await this.openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: prompt }],
+    });
+
+    return response.data.choices[0].message?.content || '';
   }
 }
 

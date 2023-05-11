@@ -49,10 +49,10 @@ export class AppComponent {
     if (bytes === 0) {
       return "0 Bytes";
     }
-    const k = 1024;
-    const dm = decimals <= 0 ? 0 : decimals;
-    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    const k: number = 1024;
+    const dm: number = decimals <= 0 ? 0 : decimals;
+    const sizes: Array<string> = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    const i: number = Math.floor(Math.log(bytes) / Math.log(k));
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
   }
 
@@ -60,16 +60,16 @@ export class AppComponent {
     if (this.files.length !== 2) {
       return;
     }
-    const cvText = this.textModel.text[0];
-    const vacancyText = this.textModel.text[1];
+    const cvText: string = this.textModel.text[0];
+    const vacancyText: string = this.textModel.text[1];
 
-    const mappedText = `
+    const mappedText: string = `
       CV text: ${cvText}.\n
       Vacancy text: ${vacancyText}.\n
       Look at this CV and Vacancy texts, compare, they are the same?
     `;
-    this.openaiService.generateText(mappedText).then((text: string) => {
-      this.textModel.response = text;
+    this.openaiService.generateText(mappedText).then((answerFromChatGpt: string): void => {
+      this.textModel.response = answerFromChatGpt;
     });
   }
 
@@ -77,26 +77,24 @@ export class AppComponent {
     const docDefinition = {
       content: [
         {
-          layout: 'lightHorizontalLines', // optional
+          // layout: 'lightHorizontalLines', // optional
           table: {
             headerRows: 1,
-            widths: [ '*', 'auto', 100, '*' ],
+            // widths: [ '*', 'auto', 100, '*' ],
+            widths: ['auto'],
 
             body: [
-              [ 'First', 'Second', 'Third', 'The last one' ],
-              [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' ],
-              [ { text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4' ]
+              // [ 'First', 'Second', 'Third', 'The last one' ],
+              // [ 'Value 1', 'Value 2', 'Value 3', 'Value 4' ],
+              // [ { text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4' ]
+              ['ChatGPT:'],
+              [`${this.textModel.response}`]
             ]
           }
         }
       ]
     };
-
-    //for download
-    // const pdfDocGenerator = pdfMake.createPdf(docDefinition);
-    // pdfDocGenerator.download('document.pdf');
-
-    //for open
+    // pdfMake.createPdf(docDefinition).download('document.pdf');
     pdfMake.createPdf(docDefinition).open();
   }
 
@@ -128,11 +126,11 @@ export class AppComponent {
   }
 
   private uploadFilesSimulator(index: number): void {
-    setTimeout(() => {
+    setTimeout((): void => {
       if (index === this.files.length) {
         return;
       } else {
-        const progressInterval = setInterval(() => {
+        const progressInterval = setInterval((): void => {
           if (this.files[index].progress === 100) {
             clearInterval(progressInterval);
             this.uploadFilesSimulator(index + 1);
