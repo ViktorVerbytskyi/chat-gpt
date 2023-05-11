@@ -2,19 +2,19 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { ProgressComponent } from './components/progress/progress.component';
-import { DndDirective } from './directives/dnd.directive';
-import {NgOptimizedImage} from "@angular/common";
+import { CoreModule } from './core/core.module';
+import { AppRoutingModule } from './app-routing.module';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProgressComponent,
-    DndDirective
   ],
   imports: [
     BrowserModule,
-    NgOptimizedImage
+    CoreModule,
+    PagesModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
