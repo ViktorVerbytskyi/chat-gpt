@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
-import { InterviewSetUpModule } from './pages/interview-set-up/interview-set-up.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +12,6 @@ import { InterviewSetUpModule } from './pages/interview-set-up/interview-set-up.
   imports: [
     BrowserModule,
     CoreModule,
-    InterviewSetUpModule,
     AppRoutingModule
   ],
   providers: [],

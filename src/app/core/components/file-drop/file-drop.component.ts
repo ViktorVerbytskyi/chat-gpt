@@ -1,19 +1,19 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import * as pdfjsLib from 'pdfjs-dist';
 import * as pdfMake from 'pdfmake/build/pdfmake';
-
-import { OpenaiService } from '../../core/services/openai.service';
+import { OpenaiService } from '../../services/openai.service';
 
 class TextModel {
   text: Array<string> = [];
   response: string = '';
 }
+
 @Component({
-  selector: 'app-interview-set-up',
-  templateUrl: './interview-set-up.component.html',
-  styleUrls: ['./interview-set-up.component.scss']
+  selector: 'app-file-drop',
+  templateUrl: './file-drop.component.html',
+  styleUrls: ['./file-drop.component.scss']
 })
-export class InterviewSetUpComponent {
+export class FileDropComponent {
   @ViewChild("fileDropRef1") fileDropEl1!: ElementRef;
   @ViewChild("fileDropRef2") fileDropEl2!: ElementRef;
   files: any[] = [];
